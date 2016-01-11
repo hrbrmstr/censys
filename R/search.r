@@ -24,16 +24,16 @@
 #' }
 censys_search <- function(index, query, page=1, fields=NULL) {
 
-  result <- POST(CENSYS_API_URL %s+% "search/" %s+% index,
+  result <- httr::POST(CENSYS_API_URL %s+% "search/" %s+% index,
                  body=list(query=query,
                             page=page,
                             fields=fields),
                  encode="json",
                  check_api())
 
-  stop_for_status(result)
+  httr::stop_for_status(result)
 
-  srs <- fromJSON(content(result, as="text"), flatten=TRUE)
+  srs <- jsonlite::fromJSON(content(result, as="text"), flatten=TRUE)
 
   class(srs) <- c("censys_srch_res", class(srs))
 

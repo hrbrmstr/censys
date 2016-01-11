@@ -11,11 +11,11 @@
 #' }
 get_series <- function() {
 
-  result <- GET(CENSYS_API_URL %s+% "data", check_api())
+  result <- httr::GET(CENSYS_API_URL %s+% "data", check_api())
 
-  stop_for_status(result)
+  httr::stop_for_status(result)
 
-  srs <- fromJSON(content(result, as="text"), flatten=TRUE)
+  srs <- jsonlite::fromJSON(content(result, as="text"), flatten=TRUE)
 
   class(srs) <- c("censys_srs", class(srs))
 
@@ -38,11 +38,11 @@ get_series <- function() {
 #' }
 view_series <- function(series_id) {
 
-  result <- GET(CENSYS_API_URL %s+% "data/" %s+% series_id, check_api())
+  result <- httr::GET(CENSYS_API_URL %s+% "data/" %s+% series_id, check_api())
 
-  stop_for_status(result)
+  httr::stop_for_status(result)
 
-  srs <- fromJSON(content(result, as="text"), flatten=TRUE)
+  srs <- jsonlite::fromJSON(content(result, as="text"), flatten=TRUE)
 
   class(srs) <- c("censys_srs_info", class(srs))
 
@@ -63,12 +63,12 @@ view_series <- function(series_id) {
 #' }
 view_result <- function(series_id, result_id) {
 
-  result <- GET(CENSYS_API_URL %s+% "data/" %s+% series_id %s+% "/" %s+% result_id,
+  result <- httr::GET(CENSYS_API_URL %s+% "data/" %s+% series_id %s+% "/" %s+% result_id,
                 check_api())
 
-  stop_for_status(result)
+  httr::stop_for_status(result)
 
-  srs <- fromJSON(content(result, as="text"), flatten=TRUE)
+  srs <- jsonlite::fromJSON(content(result, as="text"), flatten=TRUE)
 
   class(srs) <- c("censys_srs_res", class(srs))
 

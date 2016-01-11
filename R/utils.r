@@ -12,6 +12,6 @@ check_api <- function() {
     stop("Both CENSYS_API_ID and CENSYS_API_SECRET must be present in the R environment.")
   }
 
-  return(authenticate(id, secret))
+  return(httr::authenticate(id, secret))
 
 }

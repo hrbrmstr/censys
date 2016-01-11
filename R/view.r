@@ -14,11 +14,11 @@
 #' }
 view_document <- function(index, id) {
 
-  result <- GET(CENSYS_API_URL %s+% "view/" %s+% index %s+% "/" %s+% id, check_api())
+  result <- httr::GET(CENSYS_API_URL %s+% "view/" %s+% index %s+% "/" %s+% id, check_api())
 
-  stop_for_status(result)
+ httr::stop_for_status(result)
 
-  srs <- fromJSON(content(result, as="text"), flatten=TRUE)
+  srs <- jsonlite::fromJSON(content(result, as="text"), flatten=TRUE)
 
   class(srs) <- c("censys_view_doc", class(srs))
 
