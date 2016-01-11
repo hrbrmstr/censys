@@ -23,16 +23,16 @@
 #' }
 censys_report<- function(index, query, field, buckets=50) {
 
-  result <- POST(CENSYS_API_URL %s+% "report/" %s+% index,
-                 body=list(query=query,
-                            field=field,
-                            buckets=buckets),
-                 encode="json",
-                 check_api())
+  result <- httr::POST(CENSYS_API_URL %s+% "report/" %s+% index,
+                       body=list(query=query,
+                                 field=field,
+                                 buckets=buckets),
+                       encode="json",
+                       check_api())
 
-  stop_for_status(result)
+  httr::stop_for_status(result)
 
-  srs <- fromJSON(content(result, as="text"), flatten=TRUE)
+  srs <- jsonlite::fromJSON(httr::content(result, as="text"), flatten=TRUE)
 
   class(srs) <- c("censys_rpt_res", class(srs))
 
