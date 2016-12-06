@@ -22,7 +22,10 @@
 #' censys_search("ipv4", "80.http.get.headers.server: Apache", 2,
 #'               c("ip", "location.country", "autonomous_system.asn"))
 #' }
-censys_search <- function(index, query, page=1, fields=NULL) {
+censys_search <- function(index=c("ipv4", "websites", "certificates"),
+                          query, page=1, fields=NULL) {
+
+  index <- match.arg(index, c("ipv4", "websites", "certificates"))
 
   result <- httr::POST(CENSYS_API_URL %s+% "search/" %s+% index,
                  body=list(query=query,

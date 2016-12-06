@@ -16,7 +16,7 @@ view_document <- function(index, id) {
 
   result <- httr::GET(CENSYS_API_URL %s+% "view/" %s+% index %s+% "/" %s+% id, check_api())
 
- httr::stop_for_status(result)
+  httr::stop_for_status(result)
 
   srs <- jsonlite::fromJSON(content(result, as="text"), flatten=TRUE)
 

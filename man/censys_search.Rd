@@ -4,7 +4,8 @@
 \alias{censys_search}
 \title{Perform queries against Censys data}
 \usage{
-censys_search(index, query, page = 1, fields = NULL)
+censys_search(index = c("ipv4", "websites", "certificates"), query,
+  page = 1, fields = NULL)
 }
 \arguments{
 \item{index}{The search index to be queried. Must be one of either
