@@ -5,6 +5,10 @@
 #' syntax as the primary site. The endpoint returns a paginated result set of
 #' hosts (or websites or certificates) that match the search.
 #'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
 #' @param index The search index to be queried. Must be one of either
 #'        \code{ipv4}, \code{websites}, or \code{certificates}.
 #' @param query The query to be executed. For example,

@@ -8,12 +8,21 @@
 #' Ddefinition endpoints are also exposed where you can list the series and view series
 #' details (i.e., list tables and schema).
 #'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
 #' @param query SQL query string
 #' @references Censys SQL query syntax: \url{https://censys.io/query};
 #'             API doc: \url{https://www.censys.io/api/v1/docs/search}
 #' @export
 #' @return API call result (invisibly)
 #' @examples \dontrun{
+#' q <- censys_query("SELECT p443.https.tls.cipher_suite.name, count(ip) FROM ipv4
+#'                    WHERE p443.https.tls.validation.browser_trusted=true
+#'                    GROUP BY p443.https.tls.cipher_suite.name;")
+#' censys_get_job_status(q$job_id)
+#' censys_get_job_result(q$job_id)
 #' }
 censys_query <- function(sql) {
 
@@ -42,11 +51,22 @@ censys_query <- function(sql) {
 #' it has successfully finished, you can then retrieved results with the Get Results
 #' endpoint. Data should be posted as a JSON request document.
 #'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
 #' @param job_id Censys job id (from calling \code{censys_query()})
 #' @references Censys SQL query syntax: \url{https://censys.io/query};
 #'             API doc: \url{https://www.censys.io/api/v1/docs/search}
 #' @return API call result (invisibly)
 #' @export
+#' @examples \dontrun{
+#' q <- censys_query("SELECT p443.https.tls.cipher_suite.name, count(ip) FROM ipv4
+#'                    WHERE p443.https.tls.validation.browser_trusted=true
+#'                    GROUP BY p443.https.tls.cipher_suite.name;")
+#' censys_get_job_status(q$job_id)
+#' censys_get_job_result(q$job_id)
+#' }
 censys_get_job_status <- function(job_id) {
 
   result <- httr::GET(CENSYS_API_URL %s+% "query/" %s+% job_id,
@@ -70,11 +90,23 @@ censys_get_job_status <- function(job_id) {
 #' The Get Results endpoint allows you to retrieve results of a query after it has
 #' completed successfully.
 #'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
+
 #' @param job_id Censys job id (from calling \code{censys_query()})
 #' @param page page number of paged results
 #' @references Censys SQL query syntax: \url{https://censys.io/query};
 #'             API doc: \url{https://www.censys.io/api/v1/docs/search}
 #' @export
+#' @examples \dontrun{
+#' q <- censys_query("SELECT p443.https.tls.cipher_suite.name, count(ip) FROM ipv4
+#'                    WHERE p443.https.tls.validation.browser_trusted=true
+#'                    GROUP BY p443.https.tls.cipher_suite.name;")
+#' censys_get_job_status(q$job_id)
+#' censys_get_job_result(q$job_id)
+#' }
 censys_get_job_result <- function(job_id, page=1) {
 
   result <- httr::GET(CENSYS_API_URL %s+% "query/" %s+% job_id %s+% "/" %s+% page,
@@ -90,7 +122,18 @@ censys_get_job_result <- function(job_id, page=1) {
 
 }
 
+#' List all series that can be queried from the SQL interface
+#'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
+#' @references Censys SQL query syntax: \url{https://censys.io/query};
+#'             API doc: \url{https://www.censys.io/api/v1/docs/search}
 #' @export
+#' @examples \dontrun{
+#' censys_series()
+#' }
 censys_series <- function() {
 
   result <- httr::GET(CENSYS_API_URL %s+% "query_definitions",
@@ -106,7 +149,19 @@ censys_series <- function() {
 
 }
 
+#' Get details about a series, including the list of tables and schema for the series
+#'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
+#' @param series series name (call \code{censys_series() to see them all}). Defaults to \code{ipv4}.
+#' @references Censys SQL query syntax: \url{https://censys.io/query};
+#'             API doc: \url{https://www.censys.io/api/v1/docs/search}
 #' @export
+#' @examples \dontrun{
+#' censys_series_details("ipv4")
+#' }
 censys_series_details <- function(series="ipv4") {
 
   result <- httr::GET(CENSYS_API_URL %s+% "query_definitions/" %s+% series,

@@ -30,6 +30,11 @@ IPv4, Top Million Websites, and Certificates indexes using the same search
 syntax as the primary site. The endpoint returns a paginated result set of
 hosts (or websites or certificates) that match the search.
 }
+\details{
+You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+R environment for the functions in this package to work. It is highly suggested that
+you place those in \code{~/.Renviron} at least for interactive work.
+}
 \examples{
 \dontrun{
 censys_search("ipv4", "80.http.get.headers.server: Apache", 2,

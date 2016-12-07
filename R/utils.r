@@ -1,8 +1,5 @@
 CENSYS_API_URL <- "https://www.censys.io/api/v1/"
 
-# CENSYS_API_ID
-# CENSYS_API_SECRET
-
 check_api <- function() {
 
   id <- Sys.getenv("CENSYS_API_ID")

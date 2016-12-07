@@ -1,7 +1,7 @@
 Package: censys
 Title: Tools to Query the `Censys API`
 Version: 0.1.0.9000
-Authors@R: c(person("Bob", "Rudis", email = "bob@rudis.net", role = c("aut", "cre")))
+Authors@R: c(person("Bob", "Rudis", email = "brudis@rapid7.com", role = c("aut", "cre")))
 Description: Tools to Query the `Censys API`
 Depends:
     R (>= 3.2.2)

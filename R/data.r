@@ -1,5 +1,9 @@
 #' Retrieve data on the types of scans Censys regularly performs ("series").
 #'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
 #' @return list of series metadata
 #' @note Censys ID & Secret must be in the R environment
 #' @export
@@ -29,6 +33,10 @@ get_series <- function() {
 #' A "series" is a scan of the same protocol and destination accross time,
 #' including the list of scans.
 #'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
+#'
 #' @param series_id Censys series id (e.g. \code{"22-ssh-banner-full_ipv4"})
 #' @return list of specific series details
 #' @export
@@ -53,6 +61,10 @@ view_series <- function(series_id) {
 #' Retrieve data on a particular scan "result"
 #'
 #' Generally used after a call to either \code{get_series} or \code{view_series}.
+#'
+#' You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+#' R environment for the functions in this package to work. It is highly suggested that
+#' you place those in \code{~/.Renviron} at least for interactive work.
 #'
 #' @param series_id Censys series id (e.g. \code{"22-ssh-banner-full_ipv4"})
 #' @param result_id Censys series result id (e.g. \code{"20150930T0056"})

@@ -20,7 +20,14 @@ in the \code{certificates} index (e.g.,
 list of information about the endpoint
 }
 \description{
-Retrieve data that Censys has about a specific host, website, or certificate.
+The view endpoint fetches the structured data we have about a specific host, website,
+or certificate once you know the host's IP address, website's domain, or certificate's
+SHA-256 fingerprint.
+}
+\details{
+You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+R environment for the functions in this package to work. It is highly suggested that
+you place those in \code{~/.Renviron} at least for interactive work.
 }
 \examples{
 \dontrun{

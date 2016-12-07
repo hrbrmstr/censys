@@ -14,15 +14,19 @@ configured and deployed.
 }
 \details{
 The Censys API provides programmatic access to the same data accessible
-through web interface (\url{https://www.censys.io/}).
+through web interface (\url{https://censys.io/}).
 
-Censys tutorial: \url{https://www.censys.io/tutorial}
+You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+R environment for the functions in this package to work. It is highly suggested that
+you place those in \code{~/.Renviron} at least for interactive work.
+
+Censys tutorial: \url{https://censys.io/tutorial}
 }
 \author{
-Bob Rudis (@hrbrmstr)
+Bob Rudis (brudis@rapid7.com)
 }
 \references{
-\url{https://www.censys.io/about};
-            \url{https://www.censys.io/static/censys.pdf}
+\url{https://censys.io/about};
+            \url{https://censys.io/static/censys.pdf}
 }
 

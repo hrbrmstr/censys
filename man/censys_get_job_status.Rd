@@ -17,6 +17,20 @@ The Get Job Status endpoint allows you to determine whether a job has completed.
 it has successfully finished, you can then retrieved results with the Get Results
 endpoint. Data should be posted as a JSON request document.
 }
+\details{
+You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+R environment for the functions in this package to work. It is highly suggested that
+you place those in \code{~/.Renviron} at least for interactive work.
+}
+\examples{
+\dontrun{
+q <- censys_query("SELECT p443.https.tls.cipher_suite.name, count(ip) FROM ipv4
+                   WHERE p443.https.tls.validation.browser_trusted=true
+                   GROUP BY p443.https.tls.cipher_suite.name;")
+censys_get_job_status(q$job_id)
+censys_get_job_result(q$job_id)
+}
+}
 \references{
 Censys SQL query syntax: \url{https://censys.io/query};
             API doc: \url{https://www.censys.io/api/v1/docs/search}

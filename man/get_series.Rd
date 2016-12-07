@@ -10,7 +10,9 @@ get_series()
 list of series metadata
 }
 \description{
-Retrieve data on the types of scans Censys regularly performs ("series").
+You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+R environment for the functions in this package to work. It is highly suggested that
+you place those in \code{~/.Renviron} at least for interactive work.
 }
 \note{
 Censys ID & Secret must be in the R environment

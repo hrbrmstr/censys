@@ -16,6 +16,11 @@ list of specific series details
 A "series" is a scan of the same protocol and destination accross time,
 including the list of scans.
 }
+\details{
+You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in the
+R environment for the functions in this package to work. It is highly suggested that
+you place those in \code{~/.Renviron} at least for interactive work.
+}
 \examples{
 \dontrun{
 view_series("443-https-tls-full_ipv4")
