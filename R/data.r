@@ -11,7 +11,7 @@
 #' @examples \dontrun{
 #' scans <- get_series()
 #' names(scans$raw_series)
-#' names(scans$primary_seris)
+#' names(scans$primary_series)
 #' }
 get_series <- function() {
 

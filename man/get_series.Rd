@@ -21,7 +21,7 @@ Censys ID & Secret must be in the R environment
 \dontrun{
 scans <- get_series()
 names(scans$raw_series)
-names(scans$primary_seris)
+names(scans$primary_series)
 }
 }
 \references{
