@@ -22,10 +22,6 @@ You must have both \code{CENSYS_API_ID} and \code{CENSYS_API_SECRET} present in 
 R environment for the functions in this package to work. It is highly suggested that
 you place those in \code{~/.Renviron} at least for interactive work.
 }
-\examples{
-\dontrun{
-}
-}
 \references{
 Census API: \url{https://www.censys.io/api/v1/docs/data}
 }

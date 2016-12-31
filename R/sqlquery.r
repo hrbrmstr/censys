@@ -12,7 +12,7 @@
 #' R environment for the functions in this package to work. It is highly suggested that
 #' you place those in \code{~/.Renviron} at least for interactive work.
 #'
-#' @param query SQL query string
+#' @param sql SQL query string
 #' @references Censys SQL query syntax: \url{https://censys.io/query};
 #'             API doc: \url{https://www.censys.io/api/v1/docs/search}
 #' @export

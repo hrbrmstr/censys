@@ -8,6 +8,8 @@ censys_export_download(job_id, path)
 }
 \arguments{
 \item{job_id}{Censys export job id (from calling \code{censys_start_export()})}
+
+\item{path}{Location for downloaded data.}
 }
 \value{
 API call result (invisibly)
@@ -17,7 +19,9 @@ Download export job files to a specified directory
 }
 \examples{
 \dontrun{
-q <- censys_start_export("SELECT location.country, count(ip) FROM ipv4.20161206 GROUP BY location.country")
+q <- censys_start_export("
+SELECT location.country, count(ip) FROM ipv4.20161206 GROUP BY location.country
+")
 censys_export_job_status(q$job_id)
 censys_export_download(q$job_id, "~/Data")
 }

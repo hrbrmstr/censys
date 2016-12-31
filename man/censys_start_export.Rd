@@ -19,7 +19,7 @@ Default: \code{csv}.}
 
 \item{delimiter}{delimiter to use between fields in the exported data. Default: \code{","}.}
 
-\item{header}{should a header row be included in results files. Default: \code{true}.}
+\item{headers}{should a header row be included in results files. Default: \code{true}.}
 }
 \value{
 API call result (invisibly)
@@ -42,7 +42,9 @@ you place those in \code{~/.Renviron} at least for interactive work.
 }
 \examples{
 \dontrun{
-q <- censys_start_export("SELECT location.country, count(ip) FROM ipv4.20161206 GROUP BY location.country")
+q <- censys_start_export("
+SELECT location.country, count(ip) FROM ipv4.20161206 GROUP BY location.country
+")
 censys_export_job_status(q$job_id)
 censys_export_download(q$job_id, "~/Data")
 }

@@ -26,7 +26,9 @@ you place those in \code{~/.Renviron} at least for interactive work.
 }
 \examples{
 \dontrun{
-q <- censys_start_export("SELECT location.country, count(ip) FROM ipv4.20161206 GROUP BY location.country")
+q <- censys_start_export("
+SELECT location.country, count(ip) FROM ipv4.20161206 GROUP BY location.country
+")
 censys_export_job_status(q$job_id)
 censys_export_download(q$job_id, "~/Data")
 }

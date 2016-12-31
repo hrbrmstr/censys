@@ -7,7 +7,7 @@
 censys_query(sql)
 }
 \arguments{
-\item{query}{SQL query string}
+\item{sql}{SQL query string}
 }
 \value{
 API call result (invisibly)

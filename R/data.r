@@ -71,8 +71,6 @@ view_series <- function(series_id) {
 #' @return list of specific series result details
 #' @export
 #' @references Census API: \url{https://www.censys.io/api/v1/docs/data}
-#' @examples \dontrun{
-#' }
 view_result <- function(series_id, result_id) {
 
   result <- httr::GET(CENSYS_API_URL %s+% "data/" %s+% series_id %s+% "/" %s+% result_id,

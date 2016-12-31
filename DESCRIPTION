@@ -1,8 +1,15 @@
 Package: censys
 Title: Tools to Query the `Censys API`
-Version: 0.1.0.9000
+Version: 0.1.0
 Authors@R: c(person("Bob", "Rudis", email = "brudis@rapid7.com", role = c("aut", "cre")))
-Description: Tools to Query the `Censys API`
+Description: Censys is a public search engine that enables researchers to quickly ask 
+    questions about the hosts and networks that compose the Internet. Details on how 
+    Censys is architected and operated are available at <https://www.censys.io/about>. Both 
+    basic and extended research access queries are made available. More information 
+    on the SQL dialect used by the Censys engine can be found at 
+    <https://cloud.google.com/bigquery/docs/reference/legacy-sql>.
+URL: https://github.com/hrbrmstr/censys
+BugReports: https://github.com/hrbrmstr/censys/issues
 Depends:
     R (>= 3.2.2)
 License: AGPL + file LICENSE
@@ -12,5 +19,7 @@ Suggests:
 Imports:
     httr,
     jsonlite,
-    stringi
+    stringi,
+    purrr,
+    utils
 RoxygenNote: 5.0.1

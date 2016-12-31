@@ -21,4 +21,6 @@
 #' @references \url{https://censys.io/about};
 #'             \url{https://censys.io/static/censys.pdf}
 #' @import httr jsonlite stringi
+#' @importFrom purrr walk
+#' @importFrom utils download.file
 NULL
