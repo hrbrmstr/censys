@@ -3,7 +3,7 @@
 
 
 
-[![Travis-CI Build Status](https://travis-ci.org/hrbrmstr/censys.svg?branch=master)](https://travis-ci.org/hrbrmstr/censys)
+[![Travis-CI Build Status](https://travis-ci.org/hrbrmstr/censys.svg?branch=master)](https://travis-ci.org/hrbrmstr/censys) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/censys)](https://cran.r-project.org/package=censys)
 
 `censys` is an R package interface to the [Censys API](https://censys.io/api)
 
@@ -90,11 +90,11 @@ library(censys)
 library(testthat)
 
 date()
-#> [1] "Fri Dec 30 21:53:58 2016"
+#> [1] "Sat Dec 31 10:14:03 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
-#> OK: 1 SKIPPED: 0 FAILED: 0
+#> OK: 2 SKIPPED: 0 FAILED: 0
 #> 
 #> DONE ===================================================================================================================
 ```
