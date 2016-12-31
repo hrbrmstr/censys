@@ -120,6 +120,7 @@ $(document).ready(function () {
 
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<p><a href="https://travis-ci.org/hrbrmstr/censys"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5OCIgaGVpZ2h0PSIyMCI+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3Qgcng9IjMiIHdpZHRoPSI5OCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHJ4PSIzIiB4PSIzNyIgd2lkdGg9IjYxIiBoZWlnaHQ9IjIwIiBmaWxsPSIjOWY5ZjlmIi8+PHBhdGggZmlsbD0iIzlmOWY5ZiIgZD0iTTM3IDBoNHYyMGgtNHoiLz48cmVjdCByeD0iMyIgd2lkdGg9Ijk4IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI2EpIi8+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLFZlcmRhbmEsR2VuZXZhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjE5LjUiIHk9IjE1IiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIj5idWlsZDwvdGV4dD48dGV4dCB4PSIxOS41IiB5PSIxNCI+YnVpbGQ8L3RleHQ+PHRleHQgeD0iNjYuNSIgeT0iMTUiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiPnVua25vd248L3RleHQ+PHRleHQgeD0iNjYuNSIgeT0iMTQiPnVua25vd248L3RleHQ+PC9nPjwvc3ZnPg==" alt="Travis-CI Build Status" /></a></p>
 <p><code>censys</code> is an R package interface to the <a href="https://censys.io/api">Censys API</a></p>
 <p>Censys is a search engine that enables researchers to ask questions about the hosts and networks that compose the Internet. Censys collects data on hosts and websites through daily ZMap and ZGrab scans of the IPv4 address space, in turn maintaining a database of how hosts and websites are configured. Researchers can interact with this data through a search interface, report builder, and SQL engine.</p>
 <p><a href="https://www.censys.io/tutorial">Censys tutorial</a>.</p>
@@ -145,43 +146,18 @@ $(document).ready(function () {
 
 # current verison
 packageVersion(&quot;censys&quot;)
-#&gt; [1] '0.0.0.9000'
+#&gt; [1] '0.1.0'
 
 library(purrr)
 library(dplyr)
-#&gt; 
-#&gt; Attaching package: 'dplyr'
-#&gt; The following objects are masked from 'package:purrr':
-#&gt; 
-#&gt;     contains, order_by
-#&gt; The following objects are masked from 'package:stats':
-#&gt; 
-#&gt;     filter, lag
-#&gt; The following objects are masked from 'package:base':
-#&gt; 
-#&gt;     intersect, setdiff, setequal, union
 
 res &lt;- censys_query(&quot;
 SELECT p80.http.get.headers.server, p80.http.get.headers.www_authenticate, location.country, autonomous_system.asn
 FROM ipv4.20161206
 WHERE REGEXP_MATCH(p80.http.get.headers.server, r'gen[56]')
 &quot;)
-#&gt; Query: 
-#&gt; SELECT p80.http.get.headers.server, p80.http.get.headers.www_authenticate, location.country, autonomous_system.asn
-#&gt; FROM ipv4.20161206
-#&gt; WHERE REGEXP_MATCH(p80.http.get.headers.server, r'gen[56]')
-#&gt; 
-#&gt; Status: pending
-#&gt; Job Id: ahZzfnN0ZWFkeS1jaXJjdWl0LTkxNDE3cjsLEhFCaWdRdWVyeUV4ZWN1dGlvbiIkNTM0YjM5YWItYmJmZi0xMWU2LTk1YTgtM2I4MGM1Y2I5YzJiDA
 
 inf &lt;- censys_get_job_status(res$job_id)
-#&gt; Query: 
-#&gt; SELECT p80.http.get.headers.server, p80.http.get.headers.www_authenticate, location.country, autonomous_system.asn
-#&gt; FROM ipv4.20161206
-#&gt; WHERE REGEXP_MATCH(p80.http.get.headers.server, r'gen[56]')
-#&gt; 
-#&gt; Status: success
-#&gt; Job Id: ahZzfnN0ZWFkeS1jaXJjdWl0LTkxNDE3cjsLEhFCaWdRdWVyeUV4ZWN1dGlvbiIkNTM0YjM5YWItYmJmZi0xMWU2LTk1YTgtM2I4MGM1Y2I5YzJiDA
 
 Sys.sleep(10) # giving it some time to process for the README
 
@@ -220,7 +196,7 @@ library(testthat)
 #&gt;     is_null
 
 date()
-#&gt; [1] &quot;Tue Dec  6 17:00:17 2016&quot;
+#&gt; [1] &quot;Fri Dec 30 19:39:05 2016&quot;
 
 test_dir(&quot;tests/&quot;)
 #&gt; testthat results ========================================================================================================

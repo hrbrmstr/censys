@@ -3,6 +3,8 @@
 
 
 
+[![Travis-CI Build Status](https://travis-ci.org/hrbrmstr/censys.svg?branch=master)](https://travis-ci.org/hrbrmstr/censys)
+
 `censys` is an R package interface to the [Censys API](https://censys.io/api)
 
 Censys is a search engine that enables researchers to ask questions about the hosts and networks that compose the Internet. Censys collects data on hosts and websites through daily ZMap and ZGrab scans of the IPv4 address space, in turn maintaining a database of how hosts and websites are configured. Researchers can interact with this data through a search interface, report builder, and SQL engine.
@@ -38,43 +40,18 @@ library(censys)
 
 # current verison
 packageVersion("censys")
-#> [1] '0.0.0.9000'
+#> [1] '0.1.0'
 
 library(purrr)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:purrr':
-#> 
-#>     contains, order_by
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 res <- censys_query("
 SELECT p80.http.get.headers.server, p80.http.get.headers.www_authenticate, location.country, autonomous_system.asn
 FROM ipv4.20161206
 WHERE REGEXP_MATCH(p80.http.get.headers.server, r'gen[56]')
 ")
-#> Query: 
-#> SELECT p80.http.get.headers.server, p80.http.get.headers.www_authenticate, location.country, autonomous_system.asn
-#> FROM ipv4.20161206
-#> WHERE REGEXP_MATCH(p80.http.get.headers.server, r'gen[56]')
-#> 
-#> Status: pending
-#> Job Id: ahZzfnN0ZWFkeS1jaXJjdWl0LTkxNDE3cjsLEhFCaWdRdWVyeUV4ZWN1dGlvbiIkNTM0YjM5YWItYmJmZi0xMWU2LTk1YTgtM2I4MGM1Y2I5YzJiDA
 
 inf <- censys_get_job_status(res$job_id)
-#> Query: 
-#> SELECT p80.http.get.headers.server, p80.http.get.headers.www_authenticate, location.country, autonomous_system.asn
-#> FROM ipv4.20161206
-#> WHERE REGEXP_MATCH(p80.http.get.headers.server, r'gen[56]')
-#> 
-#> Status: success
-#> Job Id: ahZzfnN0ZWFkeS1jaXJjdWl0LTkxNDE3cjsLEhFCaWdRdWVyeUV4ZWN1dGlvbiIkNTM0YjM5YWItYmJmZi0xMWU2LTk1YTgtM2I4MGM1Y2I5YzJiDA
 
 Sys.sleep(10) # giving it some time to process for the README
 
@@ -116,7 +93,7 @@ library(testthat)
 #>     is_null
 
 date()
-#> [1] "Tue Dec  6 17:00:17 2016"
+#> [1] "Fri Dec 30 19:39:05 2016"
 
 test_dir("tests/")
 #> testthat results ========================================================================================================
