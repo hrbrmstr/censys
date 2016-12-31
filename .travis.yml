@@ -5,7 +5,7 @@ r:
   - devel
 warnings_are_errors: true
 cache: packages
-r_check_revdep: false\
+r_check_revdep: false
 sudo: required
 
 env:
